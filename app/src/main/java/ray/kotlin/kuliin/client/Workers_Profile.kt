@@ -18,6 +18,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +31,8 @@ import ray.kotlin.kuliin.data.api.model.KuliData
 
 @Composable
 fun Workers_Profile(navController: NavHostController) {
+    val kuliData = remember { mutableStateOf<KuliData?>(null) }
+
     Column(
         modifier = Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.SpaceAround,
@@ -57,7 +61,7 @@ fun Workers_Profile(navController: NavHostController) {
                 }
 
                 Text(
-                    text = "",
+                    text = kuliData.value!![0].Name,
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -72,9 +76,10 @@ fun Workers_Profile(navController: NavHostController) {
                         )
                     )
             )
+
             Text(
                 modifier = Modifier.padding(vertical = 15.dp),
-                text = "kuliDataItem.Description",
+                text = kuliData.value!![0].Description,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Justify,

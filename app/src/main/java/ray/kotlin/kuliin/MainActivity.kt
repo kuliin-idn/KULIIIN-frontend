@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
 
     val  BASE_URL = "https://dummy-api-kuliiin-test.vercel.app/"
 
-    private fun getKuliData() {
+    fun getKuliData() {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
@@ -48,7 +48,6 @@ class MainActivity : ComponentActivity() {
                 call: Call<List<KuliDataItem>?>,
                 response: Response<List<KuliDataItem>?>
             ) {
-                val responseBody = response.body()!!
             }
 
             override fun onFailure(call: Call<List<KuliDataItem>?>, t: Throwable) {
